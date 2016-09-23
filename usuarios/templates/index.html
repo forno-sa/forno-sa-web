@@ -1,8 +1,37 @@
+{% load i18n staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>SB Admin 2</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    {% block head_content %}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" >
+
+    <!-- MetisMenu CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" >
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'dist/css/sb-admin-2.css' %}">
+
+    <!-- Morris Charts CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/morrisjs/morris.css' %}">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" type="text/css">
+
+    {% endblock %}
+
 </head>
+
 <body>
 Go to <a href="index.html">/templates/pages/index.html</a>
 </body>
