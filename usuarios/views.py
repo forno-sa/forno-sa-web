@@ -3,7 +3,7 @@ from django.views.generic import CreateView, ListView, TemplateView
 
 
 class Usuario(TemplateView):
-    template_name = 'index.html'
+    template_name = '../templates/pages/base.html'
 
     # def get(self, request, *args, **kwargs):
     #     return render(request, self.template_name)
