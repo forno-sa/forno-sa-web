@@ -28,9 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +39,7 @@ INSTALLED_APPS = [
 
     # Extensions
     'django_extensions',
+    'djangobower',
 
     # Apps
     'usuarios',
@@ -119,14 +118,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
-
-USE_L10N = True
-
+USE_L10N = False
 USE_TZ = True
 
+DATE_FORMAT = 'd/m/Y'
+SHORT_DATE_FORMAT = 'd/m/Y'
+DATE_INPUT_FORMATS = ('%d/%m/%Y', '%m-%d-%Y', '%Y-%m-%d')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -141,8 +141,14 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
 )
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
+BOWER_COMPONENTS_ROOT = PROJECT_ROOT + '/components/'
+BOWER_PATH = '/usr/bin/bower'
+BOWER_INSTALLED_APPS = (
+    'react',
+)
