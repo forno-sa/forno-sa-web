@@ -21,7 +21,8 @@ from forno.settings import DEBUG
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Usuario.as_view()),
-    url(r'^login/', Auth.login, name='login'),
+    url(r'^login/$', Auth.login, name='login'),
+    url(r'^logout/$', Auth.logout, name='logout'),
 ]
 
 # django debug toolbar
