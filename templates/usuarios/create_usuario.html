@@ -14,69 +14,58 @@
                     <div class="panel-heading">
                         Insira dados abaixo para efetuar cadastro
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <form role="form">
+                    <form action="" method="POST">
+                    {% csrf_token %}
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Nome</label>
-                                        <input class="form-control">
+                                        <input class="form-control", name="nome">
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-lg-6">
-                                <form role="form">
+                                </div>
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Sobrenome</label>
-                                        <input class="form-control">
+                                        <input class="form-control", name="sobrenome">
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <form role="form">
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Matrícula</label>
-                                        <input class="form-control">
+                                        <input class="form-control", name="matricula">
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-lg-6">
-                                <form role="form">
+                                </div>
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>E-mail</label>
-                                        <input class="form-control">
+                                        <input class="form-control", name="email", type="email">
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <form role="form">
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Senha</label>
-                                        <input class="form-control">
+                                        <input class="form-control", name="senha", type="password">
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-lg-6">
-                                <form role="form">
+                                </div>
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Senha novamente</label>
-                                        <input class="form-control">
+                                        <input class="form-control", name="senha_again", type="password">
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <form role="form">
+                            <div class="row">
+                                <div class="col-lg-6">
                                     <button type="submit" class="btn btn-default">Enviar</button>
                                     <button type="cancel" class="btn btn-default">Cancelar</button>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
