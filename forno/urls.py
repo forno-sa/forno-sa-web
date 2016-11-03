@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from usuarios.views import Usuario, Cadastro, Auth, Icons
+from usuarios.views import Index, CreateUsuarioView, Auth, Icons
 from forno.settings import DEBUG
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', Usuario.as_view(), name='inicio'),
+    url(r'^$', Index.as_view(), name='inicio'),
     url(r'^login/$', Auth.login, name='login'),
     url(r'^logout/$', Auth.logout, name='logout'),
-    url(r'^cadastro/', Cadastro.as_view(), name='cadastro'),
+    url(r'^cadastro/', CreateUsuarioView.as_view(), name='cadastro'),
     url(r'^icons/', Icons.as_view(), name='icons'),
 ]
 
