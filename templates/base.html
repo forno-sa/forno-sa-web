@@ -3,39 +3,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>FORNO SA</title>
-
     {% block head_content %}
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" >
-
-    <!-- MetisMenu CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" >
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'dist/css/sb-admin-2.css' %}">
-
-    <!-- Morris Charts CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/morrisjs/morris.css' %}">
-
-    <!-- Custom Fonts -->
-    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" type="text/css">
-
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" >
+        <!-- MetisMenu CSS -->
+        <link rel="stylesheet" href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" >
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'dist/css/sb-admin-2.css' %}">
+        <!-- Morris Charts CSS -->
+        <link rel="stylesheet" href="{% static 'vendor/morrisjs/morris.css' %}">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" type="text/css">
     {% endblock %}
-
 </head>
 
 <body>
-
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -49,115 +38,92 @@
             </div>
             <!-- /.navbar-header -->
             {% block header %}
-
-            <ul class="nav navbar-top-links navbar-right">
-                
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        {% if not user.is_authenticated %}
-                        
-                            <li><a href="{% url 'cadastro' %}"><i class="fa fa-user fa-fw"></i> Cadastro</a>
-                            </li>
-                            <li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-fw"></i> Login</a>
-                            </li>
-
-                        {% elif user.is_authenticated %}
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuraçãoes</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="{% url 'logout'%}"><i class="fa fa-sign-out fa-fw"></i> Desconectar</a>
-                            </li>
-                        {% endif %}
-
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            {% if not user.is_authenticated %}
+                                <li><a href="{% url 'create-usuario' %}"><i class="fa fa-user fa-fw"></i> Cadastro</a>
+                                </li>
+                                <li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+                                </li>
+                            {% elif user.is_authenticated %}
+                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuraçãoes</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'logout'%}"><i class="fa fa-sign-out fa-fw"></i> Desconectar</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
             {% endblock %}
 
             {% block sidebar %}
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="start"><i class="fa fa-dashboard fa-fw"></i> Iniciar Processo de Têmpera</a>
-                        </li>
-                        <li>
-                            <a href="estatisticas"><i class="fa fa-bar-chart-o fa-fw"></i> Estatísticas</a>
-    
-                        </li>
-                        <li>
-                            <a href="nbr"><i class="fa fa-table fa-fw"></i> NBRs</a>
-                        </li>
-                        <li>
-                            <a href="info"><i class="fa fa-edit fa-fw"></i> Informações</a>
-                        </li>
-                        <li>
-                            <a href="temperas"><i class="fa fa-wrench fa-fw"></i> Tipos de Têmpera<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Tipo 1</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Tipo 2</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Tipo 3</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Tipo 4</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Tipo 5</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Tipo 6</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="ultima"><i class="fa fa-files-o fa-fw"></i> Última Sessão</a>
-                        </li>
-                    </ul>
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li>
+                                <a href="start"><i class="fa fa-dashboard fa-fw"></i> Iniciar Processo de Têmpera</a>
+                            </li>
+                            <li>
+                                <a href="estatisticas"><i class="fa fa-bar-chart-o fa-fw"></i> Estatísticas</a>
+                            </li>
+                            <li>
+                                <a href="nbr"><i class="fa fa-table fa-fw"></i> NBRs</a>
+                            </li>
+                            <li>
+                                <a href="info"><i class="fa fa-edit fa-fw"></i> Informações</a>
+                            </li>
+                            <li>
+                                <a href="temperas"><i class="fa fa-wrench fa-fw"></i> Tipos de Têmpera<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="panels-wells.html">Tipo 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="buttons.html">Tipo 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="notifications.html">Tipo 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="typography.html">Tipo 4</a>
+                                    </li>
+                                    <li>
+                                        <a href="icons.html"> Tipo 5</a>
+                                    </li>
+                                    <li>
+                                        <a href="grid.html">Tipo 6</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="ultima"><i class="fa fa-files-o fa-fw"></i> Última Sessão</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
             {% endblock %}
         </nav>
 
         {% block conteudo %}
-
-        <!-- /#page-wrapper -->
         {% endblock %}
 
     </div>
-    <!-- /#wrapper -->
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{% static 'vendor/metisMenu/metisMenu.min.js' %}"></script>
-
     <!-- Morris Charts JavaScript -->
     <script src="{% static 'vendor/raphael/raphael.min.js' %}"></script>
     <script src="{% static 'vendor/morrisjs/morris.min.js' %}"></script>
     <script src="{% static 'data/morris-data.js' %}"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'js/sb-admin-2.js' %}"></script>
-
 </body>
-
 </html>

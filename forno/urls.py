@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from usuarios.views import Index, CreateUsuarioView, Auth, NBR
+from usuarios.views import (Index, Auth, NBR, CreateUsuarioView,
+                            DetailUsuarioView, UpdateUsuarioView)
 from forno.settings import DEBUG
 
 urlpatterns = [
@@ -23,8 +24,13 @@ urlpatterns = [
     url(r'^$', Index.as_view(), name='inicio'),
     url(r'^login/$', Auth.login, name='login'),
     url(r'^logout/$', Auth.logout, name='logout'),
-    url(r'^nbr/', NBR.as_view()),    
-    url(r'^cadastro/', CreateUsuarioView.as_view(), name='cadastro'),
+    url(r'^nbr/', NBR.as_view()),
+    url(r'^cadastro-usuario/',
+        CreateUsuarioView.as_view(), name='create-usuario'),
+    url(r'^usuario(?P<pk>\d+)/',
+        DetailUsuarioView.as_view(), name='detail-usuario'),
+    url(r'^usuario(?P<pk>\d+)/edit',
+        UpdateUsuarioView.as_view(), name='update-usuario'),
 ]
 
 # django debug toolbar
