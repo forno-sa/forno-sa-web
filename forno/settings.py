@@ -67,7 +67,7 @@ ROOT_URLCONF = 'forno.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates/pages'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

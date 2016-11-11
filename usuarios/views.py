@@ -85,3 +85,7 @@ class UpdateUsuarioView(UpdateView):
     model = Usuario
     template_name = 'usuarios/update_usuario.html'
     form_class = UpdateUsuarioForm
+
+
+class Graph(TemplateView):
+	template_name = 'graphs.html'
