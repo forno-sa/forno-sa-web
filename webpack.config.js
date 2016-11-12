@@ -1,8 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
- 
+
 module.exports = {
-    entry: './static/main.js',
+	entry: [
+      './static/main.js',
+      './node_modules/react-chartjs/index.js',
+    ],
     output: { path: './static/js/', filename: 'bundle.js' },
   module: {
     loaders: [

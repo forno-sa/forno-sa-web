@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import LineExample from './line';
 
 class Hello extends React.Component {
   render() {
@@ -7,4 +8,13 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(<Hello/>, document.getElementById('hello'));
+class App extends React.Component {
+	render() {
+		return (
+				<LineExample />
+		);
+	}
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
+
