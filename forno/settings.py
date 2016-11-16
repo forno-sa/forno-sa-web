@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Apps
     'usuarios',
+    'tratamento',
 ]
 
 if DEBUG:
