@@ -1,24 +1,33 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
 
-const data = {
+// var chartdata = JSON.parse("data.json");
+var data;
+
+var oReq = new XMLHttpRequest();
+oReq.onload = reqListener;
+oReq.open("get", "data.json", true);
+oReq.send();
+
+function reqListener(e) {
+    data = JSON.parse(this.responseText);
+    console.log(data);
+}
+
+
+const datav = {
   datasets: [
     {
       label: 'My First dataset',
-      data: [{
-          'x': -10,
-          'y': 0
-      }, {
-          'x': 0,
-          'y': 10
-      }, {
-          'x': 10,
-          'y': 5
-      },
+      datav: [data
       ]
     }
   ]
 };
+
+// $.getJSON("data.json", function(json) {
+//     console.log(json);
+// });
 
 const option = {
     scales: {
