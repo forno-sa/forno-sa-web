@@ -12,7 +12,8 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css.map' %}" >
 
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -414,6 +415,10 @@
 
     <!-- React Bundle JavaScript -->
     <script src="{% static 'js/bundle.js' %}"></script>
+
+    <!-- Mascaras -->
+    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.maskedinput.js' %}"></script>
 </body>
 
 </html>
