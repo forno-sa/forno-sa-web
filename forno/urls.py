@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from usuarios.views import (Index, Auth, NBR, CreateUsuarioView,
                             DetailUsuarioView, UpdateUsuarioView, Graph)
-from tratamento.views import CreateTratamentoView
+from tratamento.views import CreateTratamentoView, DetailTratamentoView
 from forno.settings import DEBUG
 
 urlpatterns = [
@@ -35,6 +35,8 @@ urlpatterns = [
     url(r'^graphs/', Graph.as_view()),
     url(r'^tratamento/$', CreateTratamentoView.as_view(),
         name='create-tratamento'),
+    url(r'^tratamento/(?P<pk>[0-9]+)/$', DetailTratamentoView.as_view(),
+        name='detail-tratamento'),
 ]
 
 # django debug toolbar

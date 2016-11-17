@@ -20,20 +20,26 @@
             {% csrf_token %}
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Tipo de Material</label>
                                 <input class="form-control" name="tipo_material">
                                 <p class="help-block">Exemplo: Aço 1020</p>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Tempo de Tratamento</label>
-                                <input class="form-control" name="tempo">
+                                <input class="form-control" name="tempo_tratamento">
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Temperatura do Tratamento</label>
+                                <input class="form-control" name="temperatura_tratamento">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Número do Grupo</label>
                                 <input class="form-control" name="grupo">
