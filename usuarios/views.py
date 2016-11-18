@@ -8,7 +8,7 @@ from usuarios.models import Usuario
 from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm
 
 class Index(TemplateView):
-    template_name = 'index.html'
+    template_name = 'base.html'
 
     # def get(self, request, *args, **kwargs):
     #     return render(request, self.template_name)
