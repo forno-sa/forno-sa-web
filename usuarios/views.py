@@ -12,7 +12,7 @@ from usuarios.models import Usuario
 from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm
 
 class Index(TemplateView):
-    template_name = 'index.html'
+    template_name = 'base.html'
 
 
 class Auth(object):
