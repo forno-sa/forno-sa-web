@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from usuarios.views import Usuario
+from usuarios.views import Usuario, Auth
 from forno.settings import DEBUG
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Usuario.as_view()),
+    url(r'^login/$', Auth.login, name='login'),
+    url(r'^logout/$', Auth.logout, name='logout'),
 ]
 
 # django debug toolbar

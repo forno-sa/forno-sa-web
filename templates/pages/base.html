@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Forno SA</a>
+                <a class="navbar-brand" href="">Forno SA</a>
             </div>
             <!-- /.navbar-header -->
             {% block header %}
@@ -58,12 +58,27 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="login"><i class="fa fa-user fa-fw"></i> Login</a>
+                        {% if not user.is_authenticated %}
+                        <li><a href="{% url 'login'%}"><i class="fa fa-user fa-fw"></i> Login</a>
                         </li>
+<<<<<<< HEAD
                         <li><a href="configuracoes"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+=======
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'login'%}"><i class="fa fa-user fa-fw"></i> {{user.username}}</a>
+                        </li>
+                        {% endif %}
+
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'logout'%}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+>>>>>>> 05_login
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
