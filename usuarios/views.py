@@ -9,7 +9,7 @@ class Usuario(TemplateView):
 
     # def get(self, request, *args, **kwargs):
     #     return render(request, self.template_name)
-	
+
 class Auth(object):
 	def login(request):
 		if request.method == 'POST':
@@ -26,3 +26,6 @@ class Auth(object):
 	def logout(request):
 		auth_logout(request)
 		return render(request, "index.html", {"login_form": AuthenticationForm()})
+
+class NBR(TemplateView):
+	template_name = "nbr.html"
