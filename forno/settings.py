@@ -149,13 +149,12 @@ STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
 )
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
-BOWER_COMPONENTS_ROOT = PROJECT_ROOT + '/components/'
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 BOWER_PATH = '/usr/bin/bower'
 BOWER_INSTALLED_APPS = (
-    'react',
-    'jquery'
-    'jquery.countdown'
+    'jquery',
+    'jquery.countdown',
+    'highcharts',
 )

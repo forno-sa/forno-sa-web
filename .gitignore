@@ -87,6 +87,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# static file manager
+# npm and bower
 node_modules/
-forno/components/
+components/

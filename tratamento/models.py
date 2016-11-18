@@ -72,10 +72,9 @@ class Tratamento(models.Model):
 class Grafico(models.Model):
     tratamento = models.ForeignKey(
         Tratamento, verbose_name='Tratamento')
-    temperaturas = models.ManyToManyField(
-        Temperatura, related_name='temperatura_set')
-    tempos = models.ManyToManyField(
-        Tempo, related_name='tempo_set')
+    temperatura = models.DecimalField(
+        max_digits=6, decimal_places=2, verbose_name='Temperatura')
+    tempo = models.TimeField(verbose_name='Temperatura')
 
     class meta:
         verbose_name = 'Gráfico'

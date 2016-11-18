@@ -2,7 +2,8 @@ from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, ListView, TemplateView
 from tratamento.forms import CreateTratamentoForm
-from tratamento.models import Tratamento
+from tratamento.models import Tratamento, Grafico
+from chartit import DataPool, Chart
 from threading import Thread
 from datetime import datetime, time
 import serial
@@ -11,8 +12,6 @@ import random
 
 class Termopar(Thread):
     def __init__(self, numero, obj):
-        # TODO: somente para testes.
-        # retirar esse random quando estiver em produção
         try:
             self.serial = serial.Serial('/dev/ttyACM0', 9600)
         except serial.SerialException:
@@ -63,3 +62,26 @@ class DetailTratamentoView(TemplateView):
     model = Tratamento
     template_name = 'grafico.html'
 
+    def get(self, request, *args, **kwargs):
+        import ipdb
+        ipdb.set_trace()
+        dados_grafico = DataPool(
+            series=[{
+                'options': {'source': Grafico.objects.all()},
+                'terms': [
+                    'temperatura',
+                    'tempo']}])
+
+        grafico = Chart(
+            datasource=dados_grafico,
+            series_options=[{
+                'options':{'type': 'line', 'stacking': False},
+                'terms':{'tempo': ['temperatura',]}}],
+            chart_options={
+                'title': {'text': 'Grafico da Temperatura'},
+                'xAxis': {'title': { 'text': 'Tempo decorrido'}}})
+
+        context = self.get_context_data(**kwargs)
+        context['grafico'] = grafico
+
+        return self.render_to_response(context)
