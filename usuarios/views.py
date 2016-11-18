@@ -87,5 +87,5 @@ class UpdateUsuarioView(UpdateView):
     form_class = UpdateUsuarioForm
 
 
-class Graph(TemplateView):
-	template_name = 'graphs.html'
+class Grafico(TemplateView):
+	template_name = 'grafico.html'

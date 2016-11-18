@@ -2,6 +2,9 @@
 
 {% load i18n staticfiles %}
 
+{% load chartit %}
+{{ chart|load_charts:"container" }}
+
 {{block.super}}
         <style>
         /* Move down content because we have a fixed navbar that is 50px tall */
@@ -28,7 +31,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="flot-chart">
-                                <div class="flot-chart-content" id="app"></div>
+                                <div class="flot-chart-content" id="container"></div>
                             </div>
                         </div>
                     </div>

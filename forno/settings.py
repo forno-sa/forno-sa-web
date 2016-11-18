@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Apps
     'usuarios',
     'tratamento',
+    'chartit',
 ]
 
 if DEBUG:

@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from usuarios.views import (Index, Auth, NBR, CreateUsuarioView,
-                            DetailUsuarioView, UpdateUsuarioView, Graph)
+                            DetailUsuarioView, UpdateUsuarioView, Grafico)
 from tratamento.views import CreateTratamentoView, DetailTratamentoView
 from forno.settings import DEBUG
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Index.as_view(), name='inicio'),
+    url(r'^grafico/', Grafico.as_view()),
     url(r'^login/$', Auth.login, name='login'),
     url(r'^logout/$', Auth.logout, name='logout'),
     url(r'^nbr/', NBR.as_view()),
@@ -32,7 +33,6 @@ urlpatterns = [
         DetailUsuarioView.as_view(), name='detail-usuario'),
     url(r'^usuario/(?P<pk>\d+)/edit',
         UpdateUsuarioView.as_view(), name='update-usuario'),
-    url(r'^graphs/', Graph.as_view()),
     url(r'^tratamento/$', CreateTratamentoView.as_view(),
         name='create-tratamento'),
     url(r'^tratamento/(?P<pk>[0-9]+)/$', DetailTratamentoView.as_view(),
