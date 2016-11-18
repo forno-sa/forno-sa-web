@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from usuarios.views import Usuario, Auth. NBR
+from usuarios.views import Index, CreateUsuarioView, Auth, NBR
 from forno.settings import DEBUG
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', Usuario.as_view()),
+    url(r'^$', Index.as_view(), name='inicio'),
     url(r'^login/$', Auth.login, name='login'),
     url(r'^logout/$', Auth.logout, name='logout'),
     url(r'^nbr/', NBR.as_view()),    
+    url(r'^cadastro/', CreateUsuarioView.as_view(), name='cadastro'),
 ]
 
 # django debug toolbar
