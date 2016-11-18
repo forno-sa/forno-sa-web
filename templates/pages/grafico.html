@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
-
+{% load chartkick %}
 {% load i18n staticfiles %}
-
-{% load chartit %}
-{{ grafico|load_charts:"container" }}
 
 {{block.super}}
         <style>
@@ -31,7 +28,9 @@
                         </div>
                         <div class="panel-body">
                             <div class="flot-chart">
-                                <div class="flot-chart-content" id="container"></div>
+                                <div class="flot-chart-content" id="container">
+                                   {% line_chart dados %}
+                                </div>
                             </div>
                         </div>
                     </div>

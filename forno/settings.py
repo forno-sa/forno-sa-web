@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from unipath import Path
+import chartkick
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).ancestor(2)
@@ -44,7 +45,7 @@ INSTALLED_APPS = [
     # Apps
     'usuarios',
     'tratamento',
-    'chartit',
+    'chartkick',
 ]
 
 if DEBUG:
@@ -140,6 +141,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    chartkick.js(),
 )
 # List of finder classes that know how to find static files in
 # various locations.
@@ -154,7 +156,6 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 BOWER_PATH = '/usr/bin/bower'
 BOWER_INSTALLED_APPS = (
-    'jquery',
+    'jquery#1.7',
     'jquery.countdown',
-    'highcharts',
 )

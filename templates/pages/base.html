@@ -12,23 +12,36 @@
 
     <title>FORNO SA</title>
 
-    {% block head_content %}
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" >
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css.map' %}" >
+    {% block css_block %}
+        <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" >
+        <link rel="stylesheet" href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" >
+        <link rel="stylesheet" href="{% static 'dist/css/sb-admin-2.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/morrisjs/morris.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" type="text/css">
+    {% endblock %}
 
-    <!-- MetisMenu CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" >
+    {% block js_block %}
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendor/metisMenu/metisMenu.min.js' %}"></script>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'dist/css/sb-admin-2.css' %}">
+        <script src="{% static 'vendor/raphael/raphael.min.js' %}"></script>
+        <script src="{% static 'vendor/morrisjs/morris.min.js' %}"></script>
+        <script src="{% static 'data/morris-data.js' %}"></script>
 
-    <!-- Morris Charts CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/morrisjs/morris.css' %}">
+        <script src="{% static 'vendor/flot/excanvas.min.js' %}"></script>
+        <script src="{% static 'vendor/flot/jquery.flot.js' %}"></script>
+        <script src="{% static 'vendor/flot/jquery.flot.pie.js' %}"></script>
+        <script src="{% static 'vendor/flot/jquery.flot.resize.js' %}"></script>
+        <script src="{% static 'vendor/flot/jquery.flot.time.js' %}"></script>
+        <script src="{% static 'vendor/flot-tooltip/jquery.flot.tooltip.min.js' %}"></script>
+        <script src="{% static 'data/flot-data.js' %}"></script>
 
-    <!-- Custom Fonts -->
-    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" type="text/css">
+        <script src="{% static 'js/sb-admin-2.js' %}"></script>
 
+        <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+        <script src="{% static 'vendor/jquery/jquery.maskedinput.js' %}"></script>
+        <script src="{% static 'highcharts.js' %}"></script>
+        <script src="{% static 'chartkick.js' %}"></script>
     {% endblock %}
 
 </head>
@@ -364,53 +377,10 @@
             {% endblock %}
         </nav>
 
-
         {% block conteudo %}
-        
-        <!-- /#page-wrapper -->
         {% endblock %}
 
-
-
     </div>
-    <!-- /#wrapper -->
-    {% block js_block %}
-    <!-- jQuery -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{% static 'vendor/metisMenu/metisMenu.min.js' %}"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="{% static 'vendor/raphael/raphael.min.js' %}"></script>
-    <script src="{% static 'vendor/morrisjs/morris.min.js' %}"></script>
-    <script src="{% static 'data/morris-data.js' %}"></script>
-
-    <!-- Flot Charts JavaScript -->
-    <script src="{% static 'vendor/flot/excanvas.min.js' %}"></script>
-    <script src="{% static 'vendor/flot/jquery.flot.js' %}"></script>
-    <script src="{% static 'vendor/flot/jquery.flot.pie.js' %}"></script>
-    <script src="{% static 'vendor/flot/jquery.flot.resize.js' %}"></script>
-    <script src="{% static 'vendor/flot/jquery.flot.time.js' %}"></script>
-    <script src="{% static 'vendor/flot-tooltip/jquery.flot.tooltip.min.js' %}"></script>
-    <script src="{% static 'data/flot-data.js' %}"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static 'js/sb-admin-2.js' %}"></script>
-
-    <!-- React Bundle JavaScript -->
-    <script src="{% static 'js/bundle.js' %}"></script>
-
-    <!-- Mascaras -->
-    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
-    <script src="{% static 'vendor/jquery/jquery.maskedinput.js' %}"></script>
-
-    <script src="{% static 'highcharts/highcharts.js' %}"></script>
-    <script src="{% static 'jquery/src/jquery.js' %}"></script>
-    {% endblock %}
 </body>
 
 </html>

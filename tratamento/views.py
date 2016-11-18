@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
-from django.views.generic import CreateView, ListView, TemplateView
+from django.views.generic import CreateView, ListView, TemplateView, DetailView
 from tratamento.forms import CreateTratamentoForm
 from tratamento.models import Tratamento, Grafico
 from chartit import DataPool, Chart
@@ -8,6 +8,7 @@ from threading import Thread
 from datetime import datetime, time
 import serial
 import random
+import collections
 
 
 class Termopar(Thread):
@@ -58,30 +59,19 @@ class CreateTratamentoView(CreateView):
         obj.save()
         return reverse('detail-tratamento', kwargs={'pk': obj.pk})
 
-class DetailTratamentoView(TemplateView):
+class DetailTratamentoView(ListView):
     model = Tratamento
     template_name = 'grafico.html'
 
-    def get(self, request, *args, **kwargs):
-        import ipdb
-        ipdb.set_trace()
-        dados_grafico = DataPool(
-            series=[{
-                'options': {'source': Grafico.objects.all()},
-                'terms': [
-                    'temperatura',
-                    'tempo']}])
+    def get_context_data(self, **kwargs):
+        if 'view' not in kwargs:
+            kwargs['view'] = self
 
-        grafico = Chart(
-            datasource=dados_grafico,
-            series_options=[{
-                'options':{'type': 'line', 'stacking': False},
-                'terms':{'tempo': ['temperatura',]}}],
-            chart_options={
-                'title': {'text': 'Grafico da Temperatura'},
-                'xAxis': {'title': { 'text': 'Tempo decorrido'}}})
+        grafico = Grafico.objects.values('temperatura', 'tempo')
+        dados = {}
+        for obj in grafico:
+            dados[obj['tempo'].__str__()] = obj['temperatura'].to_eng_string()
 
-        context = self.get_context_data(**kwargs)
-        context['grafico'] = grafico
+        kwargs['dados'] = dados
 
-        return self.render_to_response(context)
+        return kwargs
