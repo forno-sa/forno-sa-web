@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load i18n staticfiles %}
+
+{{block.super}}
+        <style>
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+          padding-top: 100px;
+          padding-bottom: 100px;
+        }
+        </style>
+
+{% block conteudo %}
+<body>
+	<div class="wrapper">
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-6">
+	                <h1 class="page-header">NBRs</h1>
+	            </div>
+	                <!-- /.col-lg-6 -->
+				<div class="col-lg-12">
+					<h2 class="painel-body">
+						<p> <small>O aço é definido no Brasil pela NBR 6215:2011 como uma liga ferrosa passível de 	deformação plástica que, em geral, apresenta teor de carbono entre 0,008% e 2,0% na sua forma combinada e, ou, dissolvida e que pode conter elementos de liga adicionados, ou residuais.</small></p>
+						<p><small>No Brasil, a Associação Brasileira de Normas Técnicas - ABTN, por intermédio
+						da norma NBR NM 87:2000 classifica os aços-carbono comuns e os de baixo teor em
+						liga segundo os critérios adotados pela AISI (American Iron and Steel Institute) e SAE
+						(Society of Automotives Engineers).</small></p>
+	            </div>
+	                <!-- /.col-lg-12 -->    
+	        </div>
+	    </div>
+    </div>
+</body>
+{% endblock conteudo %}
