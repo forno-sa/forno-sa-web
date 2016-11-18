@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% load i18n staticfiles %}
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 <script>
 jQuery(function($){
    $("#date").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
    $("tempoTratamento").mask("99:99:99");
 });
+</script>
+
+<script type="text/javascript">
+  $("#getting-started")
+  .countdown("2017/01/01", function(event) {
+    $(this).text(
+      event.strftime('%D days %H:%M:%S')
+    );
+  });
 </script>
 
 {% block conteudo %}
@@ -16,7 +27,6 @@ jQuery(function($){
         </div>
         <!-- /.col-lg-12 -->
     </div>
-
 
 <div class="row">
     <div class="col-lg-12">
@@ -59,6 +69,7 @@ jQuery(function($){
                             <button type="submit" class="btn btn-default">Enviar</button>
                             <button type="reset" class="btn btn-default">Voltar</button>
                         </div>
+                        <div id="getting-started"></div>
                     </div>
                 </div>
             </form>

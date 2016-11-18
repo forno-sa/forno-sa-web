@@ -155,4 +155,6 @@ BOWER_COMPONENTS_ROOT = PROJECT_ROOT + '/components/'
 BOWER_PATH = '/usr/bin/bower'
 BOWER_INSTALLED_APPS = (
     'react',
+    'jquery'
+    'jquery.countdown'
 )
