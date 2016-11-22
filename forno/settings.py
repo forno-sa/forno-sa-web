@@ -51,7 +51,7 @@ if DEBUG:
 # to use django debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -115,6 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "usuarios.Usuario"
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
