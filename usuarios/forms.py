@@ -6,8 +6,8 @@ from usuarios.models import Usuario
 
 
 class AuthenticationForm(forms.Form):
-    email = forms.CharField(max_length=254)
-    password = forms.CharField(widget=forms.PasswordInput)
+    matricula = forms.CharField(max_length=254)
+    senha = forms.CharField(widget=forms.PasswordInput)
 
 
 class CreateUsuarioForm(forms.ModelForm):
@@ -40,10 +40,21 @@ class CreateUsuarioForm(forms.ModelForm):
 #        usuario.save()
 #        return usuario
 
+
     class Meta:
         model = Usuario
-        fields = ['nome', 'sobrenome', 'matricula', 'email', 'senha',
+        fields = ['user', 'nome', 'sobrenome', 'matricula', 'email', 'senha',
                   'senha_again',]
+        widgets = {
+            'user': forms.TextInput(attrs={'class': 'form-control'}),
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'sobrenome': forms.TextInput(attrs={'class': 'form-control'}),
+            'matricula': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.TextInput(attrs={'class': 'form-control'}),
+            'senha': forms.TextInput(attrs={'class': 'form-control'}),
+            'senha_again': forms.TextInput(attrs={'class': 'form-control'}),
+
+        }
 
 
 class UpdateUsuarioForm(CreateUsuarioForm):

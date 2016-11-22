@@ -5,10 +5,10 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth import (authenticate, login as auth_login,
                                  logout as auth_logout)
 from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse_lazy, reverse
-
 from django.contrib.auth.models import User
-from usuarios.models import Usuario
+from django.core.urlresolvers import reverse_lazy, reverse
+from django.contrib.auth.forms import AuthenticationForm
+from usuarios.models import Usuario, UsuarioManager
 from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm
 
 class Index(TemplateView):
@@ -18,13 +18,22 @@ class Index(TemplateView):
 class Auth(object):
     def login(request):
         if request.method == 'POST':
-            email = request.POST['email']
-            password = request.POST['password']
-            user = authenticate(email=email, password=password)
-
+            matricula = request.POST['matricula']
+            senha = request.POST['senha']
+            user = authenticate(matricula=matricula, senha=senha)
             if user and user.is_active:
                 auth_login(request, user)
-                return render(request, 'index.html')
+                return render(request, 'usuarios/index.html')
+                
+            if user is not None:
+                if user.is_active:
+                    print ("Você forneceu um username e senha corretos!")
+                else:
+                    print ("Sua conta foi desabilitada!")
+            else:
+                print ("Seu username e senha estavam incorretos.")
+
+            
         return render(
             request, 'usuarios/login.html',
             {'login_form': AuthenticationForm()})
@@ -40,6 +49,7 @@ class CreateUsuarioView(CreateView):
     model = Usuario
     template_name = 'usuarios/create_usuario.html'
     form_class = CreateUsuarioForm
+    success_url = reverse_lazy('login')
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
