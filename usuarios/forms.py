@@ -18,7 +18,7 @@ class CreateUsuarioForm(forms.ModelForm):
     senha = forms.CharField(min_length=6, max_length=16)
     senha_again = forms.CharField(min_length=6, max_length=16)
 
-    def clean(self):
+    def clean_senha_again(self):
         cleaned_data = super(CreateUsuarioForm, self).clean()
         senha = cleaned_data['senha']
         senha_again = cleaned_data['senha_again']
@@ -27,18 +27,18 @@ class CreateUsuarioForm(forms.ModelForm):
            raise ValidationError("As senhas não são iguais")
         return cleaned_data
 
-    def save(self, commit=True):
-        import ipdb
-        ipdb.set_trace()
-        user = User(username=self.data['matricula'],
-                    password=self.data['senha'],
-                    email=self.data['email'],)
-        user.save()
-        usuario = Usuario(user=user, nome=self.data['nome'],
-                          sobrenome=self.data['sobrenome'],
-                          matricula=self.data['matricula'],)
-        usuario.save()
-        return usuario
+#    def save(self, commit=True):
+#        import ipdb
+#        ipdb.set_trace()
+#        user = User(username=self.data['matricula'],
+#                    password=self.data['senha'],
+#                    email=self.data['email'],)
+#        user.save()
+#        usuario = Usuario(user=user, nome=self.data['nome'],
+#                          sobrenome=self.data['sobrenome'],
+#                          matricula=self.data['matricula'],)
+#        usuario.save()
+#        return usuario
 
     class Meta:
         model = Usuario
