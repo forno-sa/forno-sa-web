@@ -27,9 +27,9 @@ urlpatterns = [
     url(r'^nbr/', NBR.as_view()),
     url(r'^cadastro-usuario/',
         CreateUsuarioView.as_view(), name='create-usuario'),
-    url(r'^usuario(?P<pk>\d+)/',
+    url(r'^usuario/(?P<pk>\d+)/',
         DetailUsuarioView.as_view(), name='detail-usuario'),
-    url(r'^usuario(?P<pk>\d+)/edit',
+    url(r'^usuario/(?P<pk>\d+)/edit',
         UpdateUsuarioView.as_view(), name='update-usuario'),
 ]
 
