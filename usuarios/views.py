@@ -22,10 +22,11 @@ class Auth(object):
         if request.method == 'POST':
             matricula = request.POST['matricula']
             senha = request.POST['senha']
-            user = authenticate(matricula=matricula, senha=senha)
+            # import ipdb; ipdb.set_trace()
+            user = authenticate(username=matricula, password=senha)
             if user and user.is_active:
                 auth_login(request, user)
-                return render(request, 'usuarios/index.html')
+                return render(request, 'base.html')
                 
             if user is not None:
                 if user.is_active:
@@ -43,26 +44,26 @@ class Auth(object):
     def logout(request):
         auth_logout(request)
         return render(
-            request, 'usuarios/index.html',
+            request, 'usuarios/login.html',
             {'login_form': AuthenticationForm()})
 
-    def register(request):
-        if request.method == 'POST':
-            form = CreateUsuarioForm(data=request.POST)
+    # def register(request):
+    #     if request.method == 'POST':
+    #         form = CreateUsuarioForm(data=request.POST)
 
-            if form.is_valid():
-                Usuario.objects.create_user(form)
-                return render(
-                	request, 'usuarios/index.html', 
-                	{'login_form': AuthenticationForm()})
-            else:
-                print(form.errors)
-        else:
-            form = CreateUsuarioForm()
+    #         if form.is_valid():
+    #             Usuario.objects.create_user(form)
+    #             return render(
+    #             	request, 'usuarios/index.html', 
+    #             	{'login_form': AuthenticationForm()})
+    #         else:
+    #             print(form.errors)
+    #     else:
+    #         form = CreateUsuarioForm()
 
-        return render(
-        	request, 'usuarios/create_usuario.html', 
-        	{'form': form, 'login_form': AuthenticationForm()})
+    #     return render(
+    #     	request, 'usuarios/create_usuario.html', 
+    #     	{'form': form, 'login_form': AuthenticationForm()})
 
 
 class CreateUsuarioView(CreateView):
