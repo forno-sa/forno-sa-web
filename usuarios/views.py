@@ -81,3 +81,6 @@ class UpdateUsuarioView(UpdateView):
     template_name = 'usuarios/update_usuario.html'
     form_class = UpdateUsuarioForm
 
+	
+class NBR(TemplateView):
+	template_name = "nbr.html"

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from usuarios.views import (Index, CreateUsuarioView, DetailUsuarioView,
-                            UpdateUsuarioView, Auth)
+                            UpdateUsuarioView, Auth, NBR)
 from forno.settings import DEBUG
 
 urlpatterns = [
@@ -30,6 +30,7 @@ urlpatterns = [
         DetailUsuarioView.as_view(), name='detail-usuario'),
     url(r'^usuario/(?P<pk>\d+)/edit',
         UpdateUsuarioView.as_view(), name='update-usuario'),
+    url(r'^nbr/', NBR.as_view()),    
 ]
 
 # django debug toolbar
