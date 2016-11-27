@@ -52,6 +52,8 @@ class CreateUsuarioView(CreateView):
     success_url = reverse_lazy('login')
 
     def post(self, request, *args, **kwargs):
+        self.object = None
+        import ipdb; ipdb.set_trace()
         form = self.get_form()
         if form.is_valid():
             return self.form_valid(form)
