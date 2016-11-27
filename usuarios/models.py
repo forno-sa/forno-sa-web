@@ -10,10 +10,10 @@ from django.contrib.auth.models import PermissionsMixin
 class UsuarioManager(BaseUserManager):
     def create_user(self, *args, **kwargs):
         matricula = kwargs["matricula"]
-        password = kwargs["password"]
-        kwargs.pop("password")
+        password = kwargs["senha"]
+        kwargs.pop("senha")
         user = self.model(**kwargs)
-        user.set_password(password)
+        user.set_password(senha)
         user.save(using=self._db)
         return user
 
