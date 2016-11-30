@@ -5,7 +5,7 @@ from tratamento.forms import CreateTratamentoForm
 from tratamento.models import Tratamento, Grafico
 from chartit import DataPool, Chart
 from threading import Thread
-from datetime import datetime, time
+from datetime import datetime, time, timedelta
 import serial
 import random
 import collections
@@ -20,21 +20,38 @@ class Termopar(Thread):
             # mensagem para o form dizendo que não há forno conectado.
             # raise ValueError("O forno não está conectado!")
             pass
+        self.now = datetime.now().replace(microsecond=0)
+        self.delta = timedelta(seconds=12)
+        self.then = self.now + self.delta
         Thread.__init__(self)
         self.thread_numero = numero
         self.obj = obj
         self.valor = 0
         self.tempo = 0
+        self.grafico_objeto = Grafico()
 
     def get_values(self):
         # self.write(b'i')
         # valor = ser.readline()
         # self.valor = float(valor[1:6])
-        self.valor = round(random.uniform(0,300), 2)
-        if self.tempo == 20:
-            self.obj.finalizado = True
-            self.obj.save()
-        self.tempo += 5
+        self.grafico_objeto.temperatura = self.valor
+        self.grafico_objeto.tempo = self.now
+        self.grafico_objeto.tratamento = self.obj
+        self.grafico_objeto.save()
+        while self.then < self.now + timedelta(minutes=10) or not\
+              self.obj.finalizado:
+            if self.now > self.then:
+                # self.write(b'i')
+                # valor = ser.readline()
+                # self.valor = float(valor[1:6])
+                self.grafico_objeto.temperatura = self.valor
+                self.grafico_objeto.tempo = self.now
+                self.grafico_objeto.tratamento = self.obj
+                self.grafico_objeto.save()
+                self.then = self.then + self.delta
+            self.now = datetime.now().replace(microsecond=0)
+        self.obj.finalizado = True
+        self.obj.save()
 
     def close(self):
         # self.serial.close()
@@ -55,7 +72,7 @@ class CreateTratamentoView(CreateView):
         obj = self.get_context_data()['object']
         termopar = Termopar(1, obj)
         termopar.start()
-        obj.timestamp = datetime.now()
+        obj.timestamp = datetime.now().replace(microsecond=0)
         obj.save()
         return reverse('detail-tratamento', kwargs={'pk': obj.pk})
 
@@ -66,11 +83,12 @@ class DetailTratamentoView(ListView):
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:
             kwargs['view'] = self
-
-        grafico = Grafico.objects.values('temperatura', 'tempo')
-        dados = {}
+        grafico = Grafico.objects.filter(
+            tratamento=self.kwargs['pk']).values('temperatura', 'tempo')
+        dados = []
         for obj in grafico:
-            dados[obj['tempo'].__str__()] = obj['temperatura'].to_eng_string()
+            dados.append([obj['tempo'].__str__(),
+                          obj['temperatura'].to_eng_string()])
 
         kwargs['dados'] = dados
 

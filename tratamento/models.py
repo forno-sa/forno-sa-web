@@ -74,7 +74,7 @@ class Grafico(models.Model):
         Tratamento, verbose_name='Tratamento')
     temperatura = models.DecimalField(
         max_digits=6, decimal_places=2, verbose_name='Temperatura')
-    tempo = models.TimeField(verbose_name='Temperatura')
+    tempo = models.TimeField(verbose_name='Tempo')
 
     class meta:
         verbose_name = 'Gráfico'
