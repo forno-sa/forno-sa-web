@@ -65,7 +65,7 @@ class Termopar(Thread):
 
 class CreateTratamentoView(CreateView):
     model = Tratamento
-    template_name = 'tratamento.html'
+    template_name = 'tratamentos/tratamento.html'
     form_class = CreateTratamentoForm
 
     def get_success_url(self):
@@ -78,7 +78,7 @@ class CreateTratamentoView(CreateView):
 
 class DetailTratamentoView(ListView):
     model = Tratamento
-    template_name = 'grafico.html'
+    template_name = 'tratamentos/grafico.html'
 
     def get_context_data(self, **kwargs):
         if 'view' not in kwargs:

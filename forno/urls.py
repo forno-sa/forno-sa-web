@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^grafico/', Grafico.as_view()),
     url(r'^login/$', Auth.login, name='login'),
     url(r'^logout/$', Auth.logout, name='logout'),
-    url(r'^nbr/', NBR.as_view()),
+    url(r'^nbr/', NBR.as_view(), name='nbr'),
     url(r'^cadastro-usuario/',
         CreateUsuarioView.as_view(), name='create-usuario'),
     url(r'^usuario/(?P<pk>\d+)/',
