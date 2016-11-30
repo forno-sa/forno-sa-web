@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load chartkick %}
+{% load i18n staticfiles %}
+
+{{block.super}}
+        <style>
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+          padding-top: 100px;
+          padding-bottom: 100px;
+        }
+        </style>
+
+{% block conteudo %}
+<body>
+    <div id="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Gráfico de Acompanhamento</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Temperatura x Tempo
+                        </div>
+                        <div class="panel-body">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="container">
+                                   {% line_chart dados %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock conteudo %}
+
+

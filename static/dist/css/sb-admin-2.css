@@ -171,7 +171,11 @@ body {
 }
 .flot-chart {
   display: block;
+<<<<<<< HEAD
   height: 400px;
+=======
+  height: 500px;
+>>>>>>> Muda muitas coisas
 }
 .flot-chart-content {
   width: 100%;

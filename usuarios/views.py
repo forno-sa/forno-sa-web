@@ -18,7 +18,7 @@ class Index(TemplateView):
     #     return render(request, self.template_name)
 
 class NBR(TemplateView):
-	template_name = "nbr.html"
+	template_name = "pages/nbr.html"
 
 class Auth(object):
     def login(request):
@@ -85,3 +85,7 @@ class UpdateUsuarioView(UpdateView):
     model = Usuario
     template_name = 'usuarios/update_usuario.html'
     form_class = UpdateUsuarioForm
+
+
+class Grafico(TemplateView):
+	template_name = 'grafico.html'

@@ -12,7 +12,8 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css.map' %}" >
 
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -275,6 +276,12 @@
                         </li>
                         <li>
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'tratamento' %}"><i class="fa fa-dashboard fa-fw"></i> Iniciar Tratamento</a>
+                            {% endif %}
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -394,9 +401,24 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
+    <!-- Flot Charts JavaScript -->
+    <script src="{% static 'vendor/flot/excanvas.min.js' %}"></script>
+    <script src="{% static 'vendor/flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'vendor/flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'vendor/flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'vendor/flot/jquery.flot.time.js' %}"></script>
+    <script src="{% static 'vendor/flot-tooltip/jquery.flot.tooltip.min.js' %}"></script>
+    <script src="{% static 'data/flot-data.js' %}"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    <!-- React Bundle JavaScript -->
+    <script src="{% static 'js/bundle.js' %}"></script>
+
+    <!-- Mascaras -->
+    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.maskedinput.js' %}"></script>
 </body>
 
 </html>
