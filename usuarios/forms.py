@@ -6,14 +6,14 @@ from usuarios.models import Usuario
 
 
 class AuthenticationForm(forms.Form):
-    email = forms.CharField(max_length=254)
+    matricula = forms.CharField(max_length=254)
     password = forms.CharField(widget=forms.PasswordInput)
 
 
 class CreateUsuarioForm(forms.ModelForm):
     nome = forms.CharField(max_length=50)
     sobrenome = forms.CharField(max_length=50)
-    matricula = forms.CharField(min_length=9, max_length=10)
+    matricula = forms.CharField(max_length=10)
     email = forms.EmailField()
     senha = forms.CharField(min_length=6, max_length=16)
     senha_again = forms.CharField(min_length=6, max_length=16)
@@ -27,18 +27,6 @@ class CreateUsuarioForm(forms.ModelForm):
            raise ValidationError("As senhas não são iguais")
         return cleaned_data
 
-#    def save(self, commit=True):
-#        import ipdb
-#        ipdb.set_trace()
-#        user = User(username=self.data['matricula'],
-#                    password=self.data['senha'],
-#                    email=self.data['email'],)
-#        user.save()
-#        usuario = Usuario(user=user, nome=self.data['nome'],
-#                          sobrenome=self.data['sobrenome'],
-#                          matricula=self.data['matricula'],)
-#        usuario.save()
-#        return usuario
 
     class Meta:
         model = Usuario

@@ -4,9 +4,8 @@ from django.views.generic.edit import ModelFormMixin
 from django.views.generic.detail import DetailView
 from django.contrib.auth import (authenticate, login as auth_login,
                                  logout as auth_logout)
-from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse_lazy, reverse
-
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth.models import User
 from usuarios.models import Usuario
 from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm
@@ -14,22 +13,19 @@ from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm
 class Index(TemplateView):
     template_name = 'base.html'
 
-    # def get(self, request, *args, **kwargs):
-    #     return render(request, self.template_name)
-
 class NBR(TemplateView):
 	template_name = "pages/nbr.html"
 
-class Auth(object):
+class Auth(TemplateView):
     def login(request):
-        if request.method == 'POST':
-            email = request.POST['email']
-            password = request.POST['password']
-            user = authenticate(email=email, password=password)
+        if request.method == 'GET':
+            email = request.GET['matricula']
+            password = request.GET['senha']
+            user = authenticate(username=matricula, password=senha)
 
             if user and user.is_active:
                 auth_login(request, user)
-                return render(request, 'index.html')
+                return render(request, 'base.html')
         return render(
             request, 'usuarios/login.html',
             {'login_form': AuthenticationForm()})
@@ -37,7 +33,7 @@ class Auth(object):
     def logout(request):
         auth_logout(request)
         return render(
-            request, 'usuarios/index.html',
+            request, 'usuarios/login.html',
             {'login_form': AuthenticationForm()})
 
 
