@@ -45,7 +45,6 @@ class CreateUsuarioForm(forms.ModelForm):
            raise ValidationError("As senhas não são iguais")
         return senha_again
 
-
     class Meta:
         model = Usuario
         fields = ['nome', 'sobrenome', 'matricula', 'email', 'senha',
