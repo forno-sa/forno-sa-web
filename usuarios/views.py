@@ -10,31 +10,35 @@ from django.contrib.auth.models import User
 from usuarios.models import Usuario
 from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm
 
+
 class Index(TemplateView):
     template_name = 'base.html'
+
 
 class NBR(TemplateView):
 	template_name = "pages/nbr.html"
 
-class Auth(TemplateView):
-    def login(request):
-        if request.method == 'GET':
-            email = request.GET['matricula']
-            password = request.GET['senha']
-            user = authenticate(username=matricula, password=senha)
 
-            if user and user.is_active:
-                auth_login(request, user)
-                return render(request, 'base.html')
-        return render(
-            request, 'usuarios/login.html',
-            {'login_form': AuthenticationForm()})
-
-    def logout(request):
-        auth_logout(request)
-        return render(
-            request, 'usuarios/login.html',
-            {'login_form': AuthenticationForm()})
+#class Auth(TemplateView):
+#    template_name = "usuarios/login.html"
+#    def login(request):
+#        if request.method == 'GET':
+#            email = request.GET['matricula']
+#            password = request.GET['senha']
+#            user = authenticate(username=matricula, password=senha)
+#
+#            if user and user.is_active:
+#                auth_login(request, user)
+#                return render(request, 'base.html')
+#        return render(
+#            request, 'usuarios/login.html',
+#            {'login_form': AuthenticationForm()})
+#
+#    def logout(request):
+#        auth_logout(request)
+#        return render(
+#            request, 'usuarios/login.html',
+#            {'login_form': AuthenticationForm()})
 
 
 class CreateUsuarioView(CreateView):
