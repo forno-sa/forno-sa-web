@@ -22,6 +22,7 @@ from usuarios.views import (Index, CreateUsuarioView, LoginView, LogoutView,
 from tratamento.views import CreateTratamentoView, DetailTratamentoView
 from forno.settings import DEBUG
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Index.as_view(), name='inicio'),
@@ -45,5 +46,4 @@ urlpatterns = [
 if DEBUG:
     import debug_toolbar
     urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
+        url(r'^__debug__/', include(debug_toolbar.urls)),]

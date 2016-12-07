@@ -113,7 +113,7 @@
                         </ul>
                     </li>
                     {% if user.is_authenticated %}
-                    <li>Bem vindo, {{ user.nome}}.</li>
+                        <li>Bem vindo, {{ user.get_full_name }}.</li>
                     {% endif %}
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">

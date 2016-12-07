@@ -54,22 +54,19 @@ class CreateUsuarioView(CreateView):
     template_name = 'usuarios/create_usuario.html'
     form_class = CreateUsuarioForm
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
     def form_valid(self, form):
-        user = User(username=form.cleaned_data['matricula'],
-                    password=form.cleaned_data['senha'],
-                    email=form.cleaned_data['email'],
-                    )
+        user = User.objects.create_superuser(
+            first_name=form.cleaned_data['nome'],
+            last_name=form.cleaned_data['sobrenome'],
+            username=form.cleaned_data['matricula'],
+            password=form.cleaned_data['senha'],
+            email=form.cleaned_data['email'],
+            is_staff=True, is_superuser=True,)
         user.save()
-        usuario = Usuario(user=user, nome=form.cleaned_data['nome'],
-                          sobrenome=form.cleaned_data['sobrenome'],
-                          matricula=form.cleaned_data['matricula'],)
+        usuario = Usuario(
+            user=user, nome=form.cleaned_data['nome'],
+            sobrenome=form.cleaned_data['sobrenome'],
+            matricula=form.cleaned_data['matricula'],)
         usuario.save()
 
         self.object = usuario
