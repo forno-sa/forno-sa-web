@@ -90,6 +90,11 @@ class DetailTratamentoView(ListView):
             dados.append([obj['tempo'].__str__(),
                           obj['temperatura'].to_eng_string()])
 
+        t = Tratamento.objects.get(pk=self.kwargs['pk'])
+
         kwargs['dados'] = dados
+        kwargs['hora'] = t.tempo_tratamento.tempo.hour
+        kwargs['min'] = t.tempo_tratamento.tempo.minute
+        kwargs['seg'] = t.tempo_tratamento.tempo.second
 
         return kwargs

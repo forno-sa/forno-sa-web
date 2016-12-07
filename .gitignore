@@ -90,3 +90,5 @@ ENV/
 # npm and bower
 node_modules/
 components/
+
+migrations/
