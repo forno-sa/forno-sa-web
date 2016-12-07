@@ -112,21 +112,34 @@
                             </li>
                         </ul>
                     </li>
+                    {% if user.is_authenticated %}
+                        <li>Bem vindo, {{ user.get_full_name }}.</li>
+                    {% endif %}
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="login"><i class="fa fa-user fa-fw"></i> Login</a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                            </li>
+                            {% if not user.is_authenticated %}
+                                <li><a href="{% url 'create-usuario' %}"><i class="fa fa-user fa-fw"></i> Cadastro</a>
+                                </li>
+                                <li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+                                </li>
+
+                            {% elif user.is_authenticated %}
+                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'logout'%}"><i class="fa fa-sign-out fa-fw"></i> Desconectar</a>
+                                </li>
+                            {% endif %}
+
                         </ul>
+                        <!-- /.dropdown-user -->
                     </li>
+                    <!-- /.dropdown -->
                 </ul>
+                <!-- /.navbar-top-links -->
             {% endblock %}
 
             {% block sidebar %}
@@ -137,7 +150,7 @@
                             </li>
                             <li>
                                 {% if user.is_authenticated %}
-                                    <a href="{% url 'tratamento' %}"><i class="fa fa-dashboard fa-fw"></i> Iniciar Tratamento</a>
+                                    <a href="{% url 'create-tratamento' %}"><i class="fa fa-dashboard fa-fw"></i> Iniciar Tratamento</a>
                                 {% endif %}
                             </li>
                             <li>

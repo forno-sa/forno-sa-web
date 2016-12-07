@@ -1,44 +1,52 @@
 from django.shortcuts import render, render_to_response
-from django.views.generic import CreateView, ListView, UpdateView, TemplateView
+from django.views.generic import (CreateView, ListView, UpdateView,
+                                  TemplateView, FormView, View,)
 from django.views.generic.edit import ModelFormMixin
 from django.views.generic.detail import DetailView
 from django.contrib.auth import (authenticate, login as auth_login,
                                  logout as auth_logout)
-from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse_lazy, reverse
-
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
+from django.views.decorators.debug import sensitive_post_parameters
+
 from usuarios.models import Usuario
-from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm
+from usuarios.forms import CreateUsuarioForm, UpdateUsuarioForm, LoginForm
+
 
 class Index(TemplateView):
     template_name = 'base.html'
 
-    # def get(self, request, *args, **kwargs):
-    #     return render(request, self.template_name)
 
 class NBR(TemplateView):
-	template_name = "pages/nbr.html"
+    template_name = 'pages/nbr.html'
 
-class Auth(object):
-    def login(request):
-        if request.method == 'POST':
-            email = request.POST['email']
-            password = request.POST['password']
-            user = authenticate(email=email, password=password)
 
-            if user and user.is_active:
-                auth_login(request, user)
-                return render(request, 'index.html')
-        return render(
-            request, 'usuarios/login.html',
-            {'login_form': AuthenticationForm()})
+class LoginView(FormView):
+    template_name = 'usuarios/login.html'
+    form_class = LoginForm
 
-    def logout(request):
+    def form_valid(self, form):
+        auth_login(self.request, form.get_user())
+        if self.request.session.test_cookie_worked():
+            self.request.session.delete_test_cookie()
+        return HttpResponseRedirect(reverse('inicio'))
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+    @method_decorator(sensitive_post_parameters('password'))
+    def dispatch(self, request, *args, **kwargs):
+        request.session.set_test_cookie()
+        return super(LoginView, self).dispatch(request, *args, **kwargs)
+
+
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
         auth_logout(request)
-        return render(
-            request, 'usuarios/index.html',
-            {'login_form': AuthenticationForm()})
+        return HttpResponseRedirect(reverse('inicio'))
 
 
 class CreateUsuarioView(CreateView):
@@ -46,21 +54,19 @@ class CreateUsuarioView(CreateView):
     template_name = 'usuarios/create_usuario.html'
     form_class = CreateUsuarioForm
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
     def form_valid(self, form):
-        user = User(username=form.cleaned_data['matricula'],
-                    password=form.cleaned_data['senha'],
-                    email=form.cleaned_data['email'],)
+        user = User.objects.create_superuser(
+            first_name=form.cleaned_data['nome'],
+            last_name=form.cleaned_data['sobrenome'],
+            username=form.cleaned_data['matricula'],
+            password=form.cleaned_data['senha'],
+            email=form.cleaned_data['email'],
+            is_staff=True, is_superuser=True,)
         user.save()
-        usuario = Usuario(user=user, nome=form.cleaned_data['nome'],
-                          sobrenome=form.cleaned_data['sobrenome'],
-                          matricula=form.cleaned_data['matricula'],)
+        usuario = Usuario(
+            user=user, nome=form.cleaned_data['nome'],
+            sobrenome=form.cleaned_data['sobrenome'],
+            matricula=form.cleaned_data['matricula'],)
         usuario.save()
 
         self.object = usuario
