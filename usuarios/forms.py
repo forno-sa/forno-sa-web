@@ -51,5 +51,11 @@ class CreateUsuarioForm(forms.ModelForm):
                   'senha_again',]
 
 
-class UpdateUsuarioForm(CreateUsuarioForm):
-    pass
+class UpdateUsuarioForm(forms.ModelForm):
+    nome = forms.CharField(max_length=50)
+    sobrenome = forms.CharField(max_length=50)
+    email = forms.EmailField()
+
+    class Meta:
+        model = Usuario
+        fields = ['nome', 'sobrenome', 'email']

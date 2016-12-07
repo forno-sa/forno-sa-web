@@ -53,6 +53,7 @@ class CreateUsuarioView(CreateView):
     model = Usuario
     template_name = 'usuarios/create_usuario.html'
     form_class = CreateUsuarioForm
+    success_url = 'inicio'
 
     def form_valid(self, form):
         user = User.objects.create_superuser(
@@ -71,19 +72,10 @@ class CreateUsuarioView(CreateView):
         self.object = usuario
         return super(ModelFormMixin, self).form_valid(form)
 
-    def get_success_url(self):
-        pk = self.object.id
-        url_reverse = reverse('detail-usuario', kwargs={'pk': pk})
-        return url_reverse
-
 
 class DetailUsuarioView(DetailView):
     model = Usuario
     template_name = 'usuarios/detail_usuario.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(DetailUsuarioView, self).get_context_data(**kwargs)
-        return context
 
 
 class UpdateUsuarioView(UpdateView):
