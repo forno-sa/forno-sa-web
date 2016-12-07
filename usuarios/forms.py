@@ -10,14 +10,12 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label="Matrícula", max_length=10,
         widget=forms.TextInput(
-            attrs={'class': 'form-control',
-                   'placeholder': 'Matrícula',
+            attrs={'class': 'form-control', 'placeholder': 'Matrícula',
                    'name': 'matricula'}))
     password = forms.CharField(
         label="Senha", max_length=50,
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control',
-                   'placeholder': 'Senha',
+            attrs={'class': 'form-control', 'placeholder': 'Senha',
                    'name': 'password'}))
 
 
@@ -52,10 +50,26 @@ class CreateUsuarioForm(forms.ModelForm):
 
 
 class UpdateUsuarioForm(forms.ModelForm):
-    nome = forms.CharField(max_length=50)
-    sobrenome = forms.CharField(max_length=50)
-    email = forms.EmailField()
+    nome = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'value': 'Matrícula',
+                   'name': 'matricula'}))
+    sobrenome = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'value': 'Matrícula',
+                   'name': 'matricula'}))
+    email = forms.EmailField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'value': 'Matrícula',
+                   'name': 'matricula'}))
+    matricula = forms.CharField(
+        max_length=10,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'value': 'Matrícula',
+                   'name': 'matricula', 'readonly':'readonly'}))
 
     class Meta:
         model = Usuario
-        fields = ['nome', 'sobrenome', 'email']
+        fields = ['nome', 'sobrenome', 'email', 'matricula']

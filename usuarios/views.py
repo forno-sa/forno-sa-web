@@ -66,7 +66,8 @@ class CreateUsuarioView(CreateView):
         usuario = Usuario(
             user=user, nome=form.cleaned_data['nome'],
             sobrenome=form.cleaned_data['sobrenome'],
-            matricula=form.cleaned_data['matricula'],)
+            matricula=form.cleaned_data['matricula'],
+            email=form.cleaned_data['email'],)
         usuario.save()
 
         self.object = usuario
@@ -82,6 +83,29 @@ class UpdateUsuarioView(UpdateView):
     model = Usuario
     template_name = 'usuarios/update_usuario.html'
     form_class = UpdateUsuarioForm
+
+    def form_valid(self, form):
+        user = User.objects.get(username=form.cleaned_data['matricula'])
+        usuario = Usuario.objects.get(user=user)
+
+        user.first_name = form.cleaned_data['nome']
+        user.last_name = form.cleaned_data['sobrenome']
+        user.email = form.cleaned_data['email']
+        user.save()
+
+        usuario.nome = form.cleaned_data['nome']
+        usuario.sobrenome = form.cleaned_data['sobrenome']
+        usuario.matricula = form.cleaned_data['matricula']
+        usuario.email = form.cleaned_data['email']
+        usuario.save()
+
+        self.object = usuario
+        return super(ModelFormMixin, self).form_valid(form)
+
+    def get_success_url(self):
+        pk = self.object.id
+        url_reverse = reverse('detail-usuario', kwargs={'pk': pk})
+        return url_reverse
 
 
 class Grafico(TemplateView):

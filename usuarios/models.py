@@ -16,6 +16,7 @@ class Usuario(models.Model):
         default=timezone.now, verbose_name='Data de cadastro')
     matricula = models.CharField(
         max_length=10, verbose_name='Matrícula', unique=True)
+    #TODO: Retirar esse campo, senha é salva no user
     senha = models.CharField(
         max_length=100, verbose_name='Senha')
 

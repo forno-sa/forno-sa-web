@@ -21,13 +21,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Nome</label>
-                                        <input class="form-control", name="nome", value="{{ user.first_name }}">
+                                        <p>{{ form.nome }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Sobrenome</label>
-                                        <input class="form-control", name="sobrenome", value="{{ user.last_name }}">
+                                        <p>{{ form.sobrenome }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -35,13 +35,13 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>E-mail</label>
-                                        <input class="form-control", name="email", type="email", value="{{ user.email }}">
+                                        <p>{{ form.email }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Matrícula</label>
-                                        <input id="disabledInput", class="form-control", value="{{ user.username }}", disabled="", name="matricula">
+                                        <p>{{ form.matricula }}</p>
                                     </div>
                                 </div>
                             </div>
