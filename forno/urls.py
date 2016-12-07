@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, logout
 from usuarios.forms import LoginForm
-from usuarios.views import (Index, NBR, CreateUsuarioView,
-                            DetailUsuarioView, UpdateUsuarioView, Grafico)
+from usuarios.views import (Index, CreateUsuarioView, LoginView, LogoutView,
+                            DetailUsuarioView, UpdateUsuarioView, Grafico, NBR)
 from tratamento.views import CreateTratamentoView, DetailTratamentoView
 from forno.settings import DEBUG
 
@@ -26,9 +26,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', Index.as_view(), name='inicio'),
     url(r'^grafico/', Grafico.as_view()),
-    url(r'^login/$', login, {'template_name': 'usuarios/login.html',
-                             'authentication_form': LoginForm,}, name='login'),
-    #url(r'^logout/$', Auth.logout, name='logout'),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^nbr/', NBR.as_view(), name='nbr'),
     url(r'^cadastro-usuario/',
         CreateUsuarioView.as_view(), name='create-usuario'),

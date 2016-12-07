@@ -28,6 +28,7 @@ SECRET_KEY = '6-0qjuw2m8z)e-3z=xc5_7+^(v=(nrj^k!@-ztpprty%&ac&%='
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = 'django.contrib.auth.views.login'
 
 # Application definition
 INSTALLED_APPS = [
