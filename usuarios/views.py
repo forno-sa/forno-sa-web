@@ -60,8 +60,7 @@ class CreateUsuarioView(CreateView):
             last_name=form.cleaned_data['sobrenome'],
             username=form.cleaned_data['matricula'],
             password=form.cleaned_data['senha'],
-            email=form.cleaned_data['email'],
-            is_staff=True, is_superuser=True,)
+            email=form.cleaned_data['email'],)
         user.save()
         usuario = Usuario(
             user=user, nome=form.cleaned_data['nome'],
