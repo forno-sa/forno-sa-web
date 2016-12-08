@@ -35,7 +35,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Matrícula</label>
-                                        <input class="form-control", name="matricula">
+                                        <input class="form-control", name="matricula", id="matricula">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -71,4 +71,9 @@
             </div>
         </div>
     </div>
+    <script>
+   jQuery(function($){
+   $("#matricula").mask("99/99999?99");
+    });
+    </script>
 {% endblock conteudo %}

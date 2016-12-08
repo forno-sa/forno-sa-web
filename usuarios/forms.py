@@ -12,7 +12,8 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={'class': 'form-control',
                    'placeholder': 'Matrícula',
-                   'name': 'matricula'}))
+                   'name': 'matricula',
+                   'id': 'matricula'}))
     password = forms.CharField(
         label="Senha", max_length=50,
         widget=forms.PasswordInput(
