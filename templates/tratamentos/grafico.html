@@ -2,8 +2,9 @@
 {% load chartkick %}
 {% load i18n staticfiles %}
 
-
-
+    {% block refresh %}
+    <meta http-equiv="refresh" content="5, {% url 'detail-tratamento' tratamento.pk %}">
+    {% endblock %}
 
 {{block.super}}
         <style>
@@ -13,6 +14,16 @@
           padding-bottom: 100px;
         }
         </style>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("body").on("click", "a", function( e ){
+            e.preventDefault();
+            var href = $( this ).attr('href');
+            $("#container").load( href +" #container");
+        });
+    });
+    </script>
 
 {% block conteudo %}
 <body>
@@ -45,6 +56,8 @@
             </div>
         </div>
     </div>
+
+   
 
     <script>
     var hora = ({{hora}} * 3600) + ({{min}} * 60) + ({{seg}}); 

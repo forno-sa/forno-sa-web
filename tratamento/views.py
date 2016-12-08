@@ -92,6 +92,8 @@ class DetailTratamentoView(ListView):
 
         t = Tratamento.objects.get(pk=self.kwargs['pk'])
 
+        
+        kwargs['tratamento'] = t 
         kwargs['dados'] = dados
         kwargs['hora'] = t.tempo_tratamento.tempo.hour
         kwargs['min'] = t.tempo_tratamento.tempo.minute
