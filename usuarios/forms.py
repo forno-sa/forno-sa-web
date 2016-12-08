@@ -10,8 +10,10 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label="Matrícula", max_length=10,
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Matrícula',
-                   'name': 'matricula'}))
+            attrs={'class': 'form-control',
+                   'placeholder': 'Matrícula',
+                   'name': 'matricula',
+                   'id': 'matricula'}))
     password = forms.CharField(
         label="Senha", max_length=50,
         widget=forms.PasswordInput(

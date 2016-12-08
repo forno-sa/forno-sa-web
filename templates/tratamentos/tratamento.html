@@ -1,23 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n staticfiles %}
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-<script>
-jQuery(function($){
-   $("#date").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
-   $("tempoTratamento").mask("99:99:99");
-});
-</script>
-
-<script type="text/javascript">
-  $("#getting-started")
-  .countdown("2017/01/01", function(event) {
-    $(this).text(
-      event.strftime('%D days %H:%M:%S')
-    );
-  });
-</script>
 
 {% block conteudo %}
 <div id="page-wrapper">
@@ -41,20 +24,19 @@ jQuery(function($){
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Tipo de Material</label>
-                                <input class="form-control" name="tipo_material">
-                                <p class="help-block">Exemplo: Aço 1020</p>
+                                <input class="form-control" name="tipo_material" placeholder="Exemplo: Aço 1020.">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Tempo de Tratamento</label>
-                                <input class="form-control" id="tempoTratamento" name="tempo_tratamento">
+                                <input class="form-control" id="tempoTratamento" name="tempo_tratamento" placeholder="Tempo máximo 4:59:59 horas.">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label>Temperatura do Tratamento</label>
-                                <input class="form-control" name="temperatura_tratamento">
+                                <label>Temperatura do Tratamento ºC</label>
+                                <input class="form-control" id="temperatura" name="temperatura_tratamento">
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -76,6 +58,19 @@ jQuery(function($){
         </div>
     </div>
 </div>
+
+<script>
+    $.mask.definitions['H'] = "[0-4]";
+    $.mask.definitions['M'] = "[0-5]";
+    $.mask.definitions['m'] = "[0-9]";
+    $.mask.definitions['S'] = "[0-5]";
+    $.mask.definitions['s'] = "[0-9]";
+
+   jQuery(function($){
+   $("#tempoTratamento").mask("H:Mm:Ss");
+   $("#temperatura").mask("99?99");
+});
+</script>
 
 
 {% endblock conteudo %}
