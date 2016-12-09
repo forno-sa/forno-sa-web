@@ -11,6 +11,12 @@ class CreateTratamentoForm(forms.ModelForm):
     temperatura_tratamento = forms.DecimalField()
     grupo = forms.CharField(max_length=8)
 
+    def clean_temperatura_tratamento(self):
+        temperatura = self.cleaned_data['temperatura_tratamento']
+        if temperatura > 1200:
+            raise forms.ValidationError("A temperatura tem que ser menor que 1200º")
+        return temperatura
+
     def clean(self):
         temperatura = self.cleaned_data['temperatura_tratamento']
         tempo = self.cleaned_data['tempo_tratamento']
@@ -34,6 +40,8 @@ class CreateTratamentoForm(forms.ModelForm):
         self.cleaned_data['tempo_tratamento'] = tempo_ajustado[0]
 
         return self.cleaned_data
+
+    
 
     class Meta:
         model = Tratamento
