@@ -1,5 +1,6 @@
 from django.db import models
 # from usuarios.models import Aluno, Responsavel
+from datetime import datetime
 
 
 class Temperatura(models.Model):
@@ -59,8 +60,7 @@ class Tratamento(models.Model):
     #     Responsavel, verbose_name='Nome do Responsável')
     finalizado = models.BooleanField(
         default=False, verbose_name='Processo Finalizado')
-    timestamp = models.DateField(
-        null=True, blank=True, verbose_name='Hora de Início do Tratamento')
+    timestamp = datetime.now()
 
     class Meta:
         verbose_name = 'Tratamento de Material'
