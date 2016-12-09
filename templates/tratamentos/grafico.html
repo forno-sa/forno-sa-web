@@ -2,8 +2,9 @@
 {% load chartkick %}
 {% load i18n staticfiles %}
 
-
-
+    {% block refresh %}
+    <meta http-equiv="refresh" content="5, {% url 'detail-tratamento' tratamento.pk %}">
+    {% endblock %}
 
 {{block.super}}
         <style>
@@ -13,6 +14,16 @@
           padding-bottom: 100px;
         }
         </style>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("body").on("click", "a", function( e ){
+            e.preventDefault();
+            var href = $( this ).attr('href');
+            $("#container").load( href +" #container");
+        });
+    });
+    </script>
 
 {% block conteudo %}
 <body>
@@ -27,8 +38,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
-                            
-                            <h4 class="pull-left">Temperatura x Tempo {{tempo}} </h4>
+                            <h4 class="pull-left">Temperatura x Tempo {{seg_total}}</h4>
                             <span id="defaultCountdown" class="col-lg-4 pull-right"></span>
                         </div>
                         <div class="panel-body">
@@ -39,17 +49,17 @@
                             </div>
                         </div>
                     </div>
-                        
-                        </div>
                 </div>
             </div>
         </div>
     </div>
 
+   
+
     <script>
-    var hora = ({{hora}} * 3600) + ({{min}} * 60) + ({{seg}}); 
-    $.countdown.setDefaults($.countdown.regionalOptions['pt-BR']);
-    $('#defaultCountdown').countdown({until: hora, format: 'HMS'}); 
+        var hora = {{seg_total}};
+        $.countdown.setDefaults($.countdown.regionalOptions['pt-BR']);
+        $('#defaultCountdown').countdown({until: hora, format: 'HMS'});
     </script>
 </body>
 
